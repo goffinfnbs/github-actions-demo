@@ -67,7 +67,7 @@ jobs:
       uses: falti/dotenv-action@v1.0.4
       with:
         keys-case: upper
-        path: $GITHUB_WORKSPACE
+        path: ${{ env.GITHUB_WORKSPACE }}/.env
     - name: step1
       id: step1
       run: |
