@@ -56,6 +56,7 @@ jobs:
     environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
     - name: step1
+      id: step1
       run: |
         echo "organization level variable : ${{ vars.ORGANIZATION_VAR }}"
         echo "environment level variable : ${{ vars.ENVIRONMENT_STAGE }}"
@@ -63,8 +64,10 @@ jobs:
         echo "overridden variable : ${{ vars.OVERRIDE_VAR }}"
         echo "variable from shell environment : $env_var"
         echo "conditional variable : ${{ vars.USE_VARIABLES }}"
-        echo "from_step_name=step1" >> $GITHUB_ENV
+        echo "from_step_name=step1_envvar" >> $GITHUB_ENV
+        echo "STEP_OUT_PUT_PARAM=step1_param" >> $GITHUB_OUTPUT
 
     - name: step2
       run: |
-        echo "Who passed me a value : ${{ env.from_step_name }}"
+        echo "Who passed me an env var value : ${{ env.from_step_name }}"
+        echo "Who passed me a step output var : ${{ steps.step1.outputs.STEP_OUT_PUT_PARAM }}"
