@@ -8,7 +8,14 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+    inputs:
+      WD_INPUT1:
+        description: 'Test workflow_dispath input 1'
+        required: true
+        default: 'I am a REQURED workflow_dispatch input and this is my DEFAULT value'
+      WD_INPUT2:
+        description: 'Test workflow_dispath input 2'
+        required: false
 jobs:
   hello-world:
     runs-on: [self-hosted]
@@ -16,6 +23,12 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
+
+      - name: Output WD_INPUT1
+        run: echo "${{ github.event.inputs.WD_INPUT1 }}"
+
+      - name: Output WD_INPUT2
+        run: echo "${{ github.event.inputs.WD_INPUT2 }}"
 
       - name: Run a one-line script
         run: echo Hello, world!
