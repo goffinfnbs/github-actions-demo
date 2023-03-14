@@ -49,7 +49,7 @@ jobs:
   display-variables:
     name: Display Vars
     # You can use configuration variables with the `vars` context for dynamic jobs
-    if: ${{ vars.USE_VARIABLES == 'true' }}
+    # if: ${{ vars.USE_VARIABLES == 'true' }}
     runs-on: "${{ github.event.inputs.RUNNER_TYPE }}"
     environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
