@@ -62,7 +62,7 @@ jobs:
         echo "repository level variable : ${{ vars.REPOSITORY_VAR }}"
         echo "overridden variable : ${{ vars.OVERRIDE_VAR }}"
         echo "variable from shell environment : $env_var"
-        echo "conditional variable : ${{ vars.USE_VARIABLES }}
+        echo "conditional variable : ${{ vars.USE_VARIABLES }}"
 
     - name: ${{ vars.HELLO_WORLD_STEP }}
       if: ${{ vars.HELLO_WORLD_ENABLED == 'true' }}
