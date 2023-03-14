@@ -55,6 +55,12 @@ jobs:
     runs-on: "${{ github.event.inputs.RUNNER_TYPE }}"
     environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
+    - name: Load env vars
+      id: dotenv
+      uses: falti/dotenv-action@v1.0.4
+      with:
+        keys-case: upper
+        # path: # default is .env
     - name: step1
       id: step1
       run: |
@@ -66,8 +72,12 @@ jobs:
         echo "conditional variable : ${{ vars.USE_VARIABLES }}"
         echo "from_step_name=step1_envvar" >> $GITHUB_ENV
         echo "STEP_OUT_PUT_PARAM=step1_param" >> $GITHUB_OUTPUT
+        echo "GH_OWNER : ${{ steps.dotenv.outputs.GH_OWNER }}"
+        echo "GH_REPO : ${{ steps.dotenv.outputs.GH_REPO }}"
 
     - name: step2
       run: |
         echo "Who passed me an env var value : ${{ env.from_step_name }}"
         echo "Who passed me a step output var : ${{ steps.step1.outputs.STEP_OUT_PUT_PARAM }}"
+        echo "EMPEMERAL : ${{ steps.dotenv.outputs.EMPEMERAL }}"
+        echo "DISABLEUPDATE : ${{ steps.dotenv.outputs.DISABLEUPDATE }}"
