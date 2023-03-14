@@ -55,12 +55,19 @@ jobs:
     runs-on: "${{ github.event.inputs.RUNNER_TYPE }}"
     environment: ${{ vars.ENVIRONMENT_STAGE }}
     steps:
+    - name: step0
+      run: |
+        echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+        pwd
+        ls -al $GITHUB_WORKSPACE
+        env
+        
     - name: Load env vars
       id: dotenv
       uses: falti/dotenv-action@v1.0.4
       with:
         keys-case: upper
-        # path: # default is .env
+        path: "$GITHUB_WORKSPACE/.env"
     - name: step1
       id: step1
       run: |
