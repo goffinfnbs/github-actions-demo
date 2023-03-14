@@ -61,13 +61,14 @@ jobs:
         pwd
         ls -al $GITHUB_WORKSPACE
         env
+        echo "GITHUB_WORKSPACE = ${{env.GITHUB_WORKSPACE}}"
         
     - name: Load env vars
       id: dotenv
       uses: falti/dotenv-action@v1.0.4
       with:
         keys-case: upper
-        path: ${{ env.GITHUB_WORKSPACE }}/.env
+        path: "${{env.GITHUB_WORKSPACE}}/.env"
     - name: step1
       id: step1
       run: |
